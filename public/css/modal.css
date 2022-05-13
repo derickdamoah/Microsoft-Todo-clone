@@ -1,0 +1,121 @@
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+}
+
+.modal-title {
+  color: black;
+}
+
+.modal > button:hover {
+  opacity: 1;
+}
+
+/* Float cancel and delete buttons and add an equal width */
+.cancel-button,
+.delete-button {
+  width: 40%;
+  padding: 14px 20px;
+  margin: 5%;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.9;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.delete-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.container {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  vertical-align: middle;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(38, 42, 51, 0.8);
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  border: 1px solid #888;
+  border-radius: 4px;
+  width: 40%; /* Could be more or less, depending on screen size */
+  box-sizing: border-box;
+}
+.clearfix {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 50px;
+}
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.close-button {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+.close-button:hover,
+.close-button:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    border: 1px solid #888;
+    border-radius: 4px;
+    width: 60%; /* Could be more or less, depending on screen size */
+    box-sizing: border-box;
+  }
+  
+}
+
+@media screen and (max-width: 400px) {
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    border: 1px solid #888;
+    border-radius: 4px;
+    width: 70%; /* Could be more or less, depending on screen size */
+    box-sizing: border-box;
+  }
+  
+}

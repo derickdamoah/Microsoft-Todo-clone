@@ -1,0 +1,136 @@
+/* body {
+  color: black;
+  background-color: rgba(49, 61, 225, 0.75);
+  margin: 0;
+  padding-left: 5%;
+  padding-right: 5%;
+  overflow-x: scroll;
+  font-family: sans-serif;
+  background-image: url("../images/nature-wheat-field-grain.jpg");
+} */
+
+button {
+  background: none;
+  border: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: white;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.body-container {
+  display: inline-block;
+}
+
+aside {
+  width: 30%;
+  height: 100vh;
+  padding-right: 15px;
+  margin-right: 15px;
+  float: left;
+  background-color: lightgray;
+}
+
+/* .main-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+  width: 70%;
+  min-width: 400px;
+  max-height: 65vh;
+  overflow-y: scroll;
+} */
+
+.main-container.add-item-btn {
+  overflow: hidden;
+  padding: 0;
+}
+
+.item-container {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  background-color: rgb(250, 250, 250, 0.9);
+  margin: 2px 0;
+  padding: 15px 5px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.item-container:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.title {
+  flex: 0 0 70%;
+  overflow-wrap: break-word;
+  margin-right: 10px;
+  min-width: 0;
+}
+
+.view-item,
+.edit-item,
+.delete-item {
+  flex: 0 0 5%;
+  margin: 0px 5px;
+  min-width: 0;
+}
+
+.add-item-btn {
+  position: absolute;
+  bottom: 0vh;
+  left: 5%;
+  right: 5%;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar:hover {
+  width: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(85, 85, 85);
+  border-radius: 50px;
+  margin-top: 10px;
+}
+
+.material-symbols-outlined,
+.material-icons-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.item-container2 {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  background-color: rgb(250, 250, 250, 0.9);
+  margin: 2px 0;
+  padding: 10px 5px;
+  border-radius: 4px;
+}
+
+.item-container2:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.material-icons-outlined.md-18 {
+  font-size: 18px;
+}
+.material-symbols-outlined.md-48 {
+  font-size: 38px;
+}

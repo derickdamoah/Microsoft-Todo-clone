@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: sans-serif;
+  color: black;
+}
+
+.container1 {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 100vh;
+  /* min-width: 0; */
+  box-sizing: border-box;
+}
+
+.container2 {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-grow: 0;
+  flex-shrink: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.task-container {
+  min-width: 0;
+  width: 100%;
+  max-height: 65vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar:hover {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  margin: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(85, 85, 85);
+  border-radius: 50px;
+}
+
+.main-content {
+  background-color: rgba(37, 68, 168, 0.75);
+  padding: 50px;
+  width: 70%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: white;
+  margin: 0 0 20px 0;
+}
+
+.container3 {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(250, 250, 250, 0.7);
+  width: 100%;
+  padding: 10px 20px;
+  margin: 10px 0;
+  border-radius: 4px;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.container3:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.container3[data-error] .input {
+  border: 1px solid #c92432;
+  background: #fffafa;
+  display: none;
+}
+
+.container3[data-error]::before {
+  content: attr(data-error);
+  display: block;
+  color: #c92432;
+  margin: 5px;
+}
+.add-item-btn {
+  display: inline-flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  text-decoration: none;
+  color: black;
+  padding: 10px 0;
+}
+
+.add-item-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: rgb(250, 250, 250, 0.7);
+  width: 100%;
+  padding: 0 20px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.add-item-container:hover {
+  background-color: rgb(250, 250, 250);
+}
+
+.add-item-link-position {
+  margin-top: auto;
+  box-sizing: border-box;
+}
+
+.add-item-link {
+  margin: auto;
+  text-align: center;
+}
+
+.back-home-link > span {
+  display: inline-block;
+  vertical-align: middle;
+  color: white;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.link:hover {
+  font-size: 1.1rem;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+.display-error {
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+button.open-sidebar,
+button.close-sidebar {
+  display: none;
+}
+
+form > button > span:hover {
+  cursor: pointer;
+  color: red
+}
+

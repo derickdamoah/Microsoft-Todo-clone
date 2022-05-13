@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs", {title: "Page not found"}) %>
+  </head>
+  <body>
+    <div class="container1">
+      <div class="container2 aside-content">
+
+      </div>
+      <div class="container2 main-content">
+        <h1>Page not found</h1>
+        <p class="not-found">Sorry, the page <code><%= url %></code> could not be found</p>
+        <a class="back-home-link" href="/Tasks">
+            <span class="material-symbols-outlined">arrow_back_ios</span>
+            <span class="link"> Go back to the homepage</span>
+          </a>
+      </div>
+    </div>
+  </body>
+</html>

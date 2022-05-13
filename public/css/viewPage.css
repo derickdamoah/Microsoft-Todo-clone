@@ -1,0 +1,4 @@
+.addItemPage-container > .container3:last-child{
+    min-height: 100px;
+    align-items: flex-start;
+}

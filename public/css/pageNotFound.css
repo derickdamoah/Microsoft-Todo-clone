@@ -1,0 +1,12 @@
+.not-found{
+    margin-bottom: 20px;
+    color: white;
+}
+
+code{
+    background-color: aliceblue;
+    color: black;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 4px;
+}

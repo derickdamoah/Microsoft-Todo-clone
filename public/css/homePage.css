@@ -1,0 +1,26 @@
+
+  .title {
+    flex: 0 0 80%;
+    overflow-wrap: break-word;
+    margin-right: 10px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+  
+  .view-item,
+  .edit-item,
+  .delete-item {
+    flex: 0 0 5%;
+    margin: 0px 5px;
+    min-width: 0;
+    float: right;
+    text-align: center;
+    color: black;
+    box-sizing: border-box;
+  }
+  
+  .delete-item {
+    background: none;
+    border: none;
+  }
+  

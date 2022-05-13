@@ -1,0 +1,100 @@
+.aside-content {
+  flex-grow: 0;
+  flex-shrink: 0;
+  background-color: rgb(240, 240, 240);
+  padding: 20px 10px 0;
+  width: 30%;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#collectionTitle {
+  display: none;
+}
+
+#collectionTitle:hover {
+  border: 1px solid black;
+}
+
+#collectionTitle:focus {
+  border: 1px solid black;
+}
+
+.flex-container {
+  display: inline-flex;
+  width: 100%;
+}
+
+.aside-div {
+  background-color: rgb(240, 240, 240);
+  margin: 0;
+  padding: 5px;
+}
+
+.aside-div:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.container3::before {
+  margin: 0;
+}
+
+.collection-items {
+  background-color: rgb(240, 240, 240);
+  margin: 0;
+  padding: 8px 5px;
+  justify-content: flex-start;
+}
+
+.collection-items:hover {
+  background-color: rgb(230, 230, 230);
+}
+
+.collection-list {
+  height: 85%;
+  min-height: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  vertical-align: middle;
+  box-sizing: border-box;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.flex-container > label,
+.flex-container > input[type="text"] {
+  margin: 0;
+  padding: 5px;
+}
+
+.form-container {
+  margin-top: auto;
+  height: 15%;
+  box-sizing: border-box;
+  justify-content: flex-end;
+}
+
+#aside-container {
+  max-height: 100vh;
+  height: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
+}
+
+.delete-collection {
+  flex: 0 0 5%;
+  margin: 0px 5px;
+  min-width: 0;
+  float: right;
+  text-align: center;
+  color: black;
+  box-sizing: border-box;
+}
+
+button > span{
+  cursor: pointer;
+}
+
+

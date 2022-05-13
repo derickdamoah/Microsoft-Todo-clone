@@ -1,0 +1,37 @@
+<aside id="aside-container">
+  <div class="collection-list container2">
+    <a class="container3 collection-items" href="/Tasks">Tasks</a>
+
+    <% const collectionDataFiltered = collectionData.filter(x => x.collectionTitle != "Tasks")%>
+    <% collectionDataFiltered.map( function(taskCollection) { %>
+      <div class="container3 collection-items">
+                <a class="title" href="/<%= taskCollection.collectionTitle %>"><%= taskCollection.collectionTitle %></a>
+
+        <form class="delete-collection" action="/<%= taskCollection.collectionTitle%>/delete-collection/<%= taskCollection.id %>" method="POST">
+          <button type="button" name="submitButton">
+            <span class="material-icons-outlined md-18">delete_forever</span>
+          </button>
+        </form>
+      </div>
+
+
+        <% }) %>
+  </div>
+
+
+  <div class="container2 form-container">
+      <form id="create-collection-form" action="/<%= urlParameters.title %>/create-collection" method="POST">
+        <div class="container3 display-error aside-div" data-error="<%= typeof error.errors == "undefined" ? undefined : error.errors.collectionTitle %>" >
+        <div class="flex-container">
+                  <button type="submit" name="submit">
+        <span class="material-symbols-outlined">add</span>
+      </button>
+      <label for="collectionTitle">Add new list</label>
+      <input type="text" id="collectionTitle" name="collectionTitle" placeholder="Try typing 'Groceries'"/>
+        </div>
+
+    </div>
+
+  </form>
+  </div>
+</aside>

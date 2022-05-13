@@ -1,0 +1,70 @@
+.addItemPage-container{
+    margin-top: 15px;
+    box-sizing: border-box;
+}
+
+.input-container{
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    padding: 0;
+    margin: 0 0 40px 0;
+}
+
+.description-container{
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    padding: 0;
+}
+.textarea{
+    padding: 20px 5px;
+}
+
+
+
+.add-item-btn{
+
+    margin: 2px;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 4px;
+    min-width: 400px;
+}
+
+a > span{
+    margin: auto;
+    text-align: center;
+}
+
+button > span{
+    margin: auto;
+    text-align: center;
+}
+
+.item-container[data-error] .input{
+    border: 1px solid #c92432;
+    background: #fffafa;
+    display: none;
+}
+
+.item-container[data-error]::before {
+    content: attr(data-error);
+    display: block;
+    color:#c92432;
+    /* padding: 0 5px; */
+    margin: 5px
+} 
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+
+
+
+

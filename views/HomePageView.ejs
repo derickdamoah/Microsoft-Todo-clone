@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include("./partials/head.ejs", {title: "To Do list"}) %>
+  </head>
+  <body>
+    <div class="container1">
+      <div class="container2 aside-content">
+        <%- include("./partials/closeSidebarButton.ejs") %> <%-
+        include("./partials/aside.ejs", {collectionData: collectionData,
+        urlParameters:urlParameters}) %>
+      </div>
+      
+      <%- include("./partials/modal.ejs") %>
+
+      <div class="container2 main-content">
+        <%- include("./partials/openAsideButton.ejs") %>
+
+        <h1><%= data.collectionTitle%></h1>
+
+        <div class="task-container">
+          <% const taskItems = data.data %> <%
+          taskItems.forEach(function(element){ %>
+          <div class="container3">
+            <span class="title"><%= element.title %></span>
+
+            <a
+              class="view-item"
+              href="/<%= data.collectionTitle%>/view-item/<%= element.id %>"
+            >
+              <span class="material-icons-outlined md-18">visibility</span>
+            </a>
+
+            <a
+              class="edit-item"
+              href="/<%= data.collectionTitle%>/edit-item/<%= element.id %>"
+            >
+              <span class="material-icons-outlined md-18">edit</span>
+            </a>
+
+            <form
+              class="delete-item"
+              action="/<%= data.collectionTitle%>/delete/<%= element.id %>"
+              method="POST"
+            >
+              <button type="button" name="submitButton">
+                <span class="material-icons-outlined md-18"
+                  >delete_forever</span
+                >
+              </button>
+            </form>
+          </div>
+          <% }) %>
+        </div>
+
+        <div class="add-item-container add-item-link-position">
+          <a class="add-item-btn" href="/<%= data.collectionTitle%>/add-item">
+            <span class="material-symbols-outlined">add</span>
+            <span class="add-item-link">Add Item</span>
+          </a>
+        </div>
+      </div>
+    </div>
+    <%- include("./partials/scripts.ejs") %>
+  </body>
+</html>
