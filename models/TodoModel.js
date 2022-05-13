@@ -25,6 +25,7 @@ const TodoSchema = new mongoose.Schema({
 
 mongoose.connect('mongodb://localhost:27017/todo') 
 
+
 const TodoModel = mongoose.model("Todo", TodoSchema)
 
 export {TodoModel}
