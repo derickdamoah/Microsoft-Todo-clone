@@ -1,17 +1,14 @@
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
+import * as collectionDataService from "../services/collectionDataService.js";
 
 export async function homePage(request, response) {
   try {
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    }).populate({ path: "data" });
+    const data = await collectionDataService.findOneCollectionItem(request.params.title)
 
     if (data !== null) {
-      const urlParameters = { title: request.params.title };
-      const collectionData = await TaskCollectionModel.find({}).populate({
-        path: "data",
-      });
-      response.render("HomePageView.ejs", {
+      const urlParameters = request.params
+      const collectionData = await collectionDataService.findAllCollectionItems()
+
+      response.status(200).render("HomePageView.ejs", {
         collectionData: collectionData,
         data: data,
         error: "",

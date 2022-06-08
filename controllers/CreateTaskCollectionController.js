@@ -1,21 +1,20 @@
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
+import * as collectionDataService from "../services/collectionDataService.js"
+
 export async function createTaskCollection(request, response) {
   try {
-    await TaskCollectionModel.create({
-      collectionTitle: request.body.collectionTitle,
-    });
-    response.redirect(`/${request.body.collectionTitle}`);
+
+    const createCollection = await collectionDataService.createCollection(request.body.collectionTitle)
+
+    response.redirect(`/${createCollection.collectionTitle}`);
+
   } catch (error) {
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    }).populate({ path: "data" });
+
+    const data = await collectionDataService.findOneCollectionItem(request.params.title)
 
     if (data !== null) {
-      const collectionData = await TaskCollectionModel.find({}).populate({
-        path: "data",
-      });
+      const collectionData = await collectionDataService.findAllCollectionItems()
 
-      const urlParameters = { title: request.params.title };
+      const urlParameters = request.params;
       response.render("HomePageView.ejs", {
         collectionData: collectionData,
         data: data,

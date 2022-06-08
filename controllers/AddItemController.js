@@ -1,21 +1,16 @@
-import { TodoModel } from "../models/TodoModel.js";
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
+import * as collectionDataService from "../services/collectionDataService.js"
+
+import * as taskDataService from "../services/taskDataService.js"
 
 export async function addItemGet(request, response) {
   try {
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    }).populate({ path: "data" });
+
+    const data = await collectionDataService.findOneCollectionItem(request.params.title)
 
     if (data != null) {
-      const collectionData = await TaskCollectionModel.find({}).populate({
-        path: "data",
-      });
-      const urlParameters = {
-        title: request.params.title,
-        id: request.params.id,
-      };
-      response.render("AddItemPageView.ejs", {
+      const collectionData = await collectionDataService.findAllCollectionItems()
+      const urlParameters = request.params
+      response.status(200).render("AddItemPageView.ejs", {
         collectionData: collectionData,
         data: "",
         error: "",
@@ -32,33 +27,21 @@ export async function addItemGet(request, response) {
 
 export async function addItemPost(request, response) {
   try {
-    const collection = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    });
+    const collection = collectionDataService.findOneCollectionItem(request.params.title)
+    
     if (collection !== null) {
-      const createTask = await TodoModel.create({
-        title: request.body.title,
-        description: request.body.description,
-      });
+      const createTask = await taskDataService.createOneTask(request.body.title, request.body.description)
 
-      await collection.data.push(createTask._id);
-      await collection.save();
-      response.redirect(`/${request.params.title}`);
+      await collectionDataService.addTaskToCollection(request.params.title, createTask._id)
+
+      response.status(200).redirect(`/${request.params.title}`);
     } else {
       response.redirect(request.url);
     }
   } catch (error) {
-    const collectionData = await TaskCollectionModel.find({}).populate({
-      path: "data",
-    });
-
-    const data = {
-      title: request.body.title,
-      description: request.body.description,
-    };
-    const urlParameters = {
-      title: request.params.title,
-    };
+    const collectionData = await collectionDataService.findAllCollectionItems()
+    const data = request.body
+    const urlParameters = request.params
     response.render("AddItemPageView.ejs", {
       collectionData: collectionData,
       data: data,

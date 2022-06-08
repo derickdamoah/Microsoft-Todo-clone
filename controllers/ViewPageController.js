@@ -1,23 +1,16 @@
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
-import { TodoModel } from "../models/TodoModel.js";
+import * as taskDataService from "../services/taskDataService.js"
+import * as collectionDataService from "../services/collectionDataService.js"
 
 export async function viewItemPage(request, response) {
   try {
-    const task = await TodoModel.findOne({ _id: request.params.id });
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    }).populate({ path: "data" });
+    const task = await taskDataService.findOneTask(request.params.id);
+    const data = await collectionDataService.findOneCollectionItem(request.params.title)
 
     if (task !== null && data !== null) {
-      const collectionData = await TaskCollectionModel.find({}).populate({
-        path: "data",
-      });
+      const collectionData = collectionDataService.findAllCollectionItems()
 
-      const urlParameters = {
-        title: request.params.title,
-        id: request.params.id,
-      };
-      console.log(urlParameters);
+      const urlParameters = request.params
+
       response.render("ViewItemPageView.ejs", {
         collectionData: collectionData,
         data: task,

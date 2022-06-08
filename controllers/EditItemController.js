@@ -1,21 +1,16 @@
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
-import { TodoModel } from "../models/TodoModel.js";
+import * as taskDataService from "../services/taskDataService.js"
+import * as collectionDataService from "../services/collectionDataService.js"
 
 export async function editItemPageGet(request, response) {
   try {
-    const task = await TodoModel.findOne({ _id: request.params.id });
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    }).populate({ path: "data" });
+    const task = await taskDataService.findOneTask(request.params.id);
+    const collectionItem = await collectionDataService.findOneCollectionItem(request.params.title)
 
-    if (task !== null && data !== null) {
-      const collectionData = await TaskCollectionModel.find({}).populate({
-        path: "data",
-      });
-      const urlParameters = {
-        title: request.params.title,
-        id: request.params.id,
-      };
+    if (task !== null && collectionItem !== null) {
+      const collectionData = await collectionDataService.findAllCollectionItems()
+
+      const urlParameters = request.params
+
       response.render("EditItemPageView.ejs", {
         collectionData: collectionData,
         data: task,
@@ -26,46 +21,34 @@ export async function editItemPageGet(request, response) {
       return next();
     }
   } catch (error) {
-    const url = request.url;
-    response.status(404).render("PageNotFoundView.ejs", { url: url });
+    response.status(404).render("PageNotFoundView.ejs", { url: request.url });
   }
 }
 
 export async function editItemPagePost(request, response) {
   try {
     try {
-      await TodoModel.findOne({ _id: request.params.id });
+      await taskDataService.findOneTask(request.params.id);
     } catch (error) {
       response.redirect(request.url);
     }
 
-    const collection = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    });
+    const collection = await collectionDataService.findOneCollectionItem(request.params.title)
 
     if (collection !== null) {
-      const query = { _id: request.params.id };
-      const update = {
-        title: request.body.title,
-        description: request.body.description,
-      };
-      const validator = { runValidators: true, context: "query" };
-      await TodoModel.findOneAndUpdate(query, update, validator).exec();
+
+      await taskDataService.editTask(request.params.id, request.body)
+
       response.redirect(`/${request.params.title}`);
     } else {
       response.redirect(request.url);
     }
   } catch (error) {
-    const collectionData = await TaskCollectionModel.find({}).populate({
-      path: "data",
-    });
-    const task = await TodoModel.findOne({ _id: request.params.id });
+    const collectionData = await collectionDataService.findAllCollectionItems
 
-    const urlParameters = {
-      title: request.params.title,
-      id: request.params.id,
-    };
+    const task = await taskDataService.findOneTask(request.params.id)
 
+    const urlParameters = request.params
     response.render("EditItemPageView.ejs", {
       collectionData: collectionData,
       data: task,

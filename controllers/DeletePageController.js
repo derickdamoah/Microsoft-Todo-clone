@@ -1,17 +1,16 @@
-import { TaskCollectionModel } from "../models/TaskCollectionModel.js";
-import { TodoModel } from "../models/TodoModel.js";
+import * as taskDataService from "../services/taskDataService.js"
+import * as collectionDataService from "../services/collectionDataService.js"
 
 export async function deleteItem(request, response) {
   try {
-    const collection = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    });
-    if (collection !== null) {
-      await TodoModel.findOneAndDelete({ _id: request.params.id });
 
-      const index = await collection.data.indexOf(request.params.id);
-      await collection.data.splice(index, 1);
-      await collection.save();
+    const collection = await collectionDataService.findOneCollectionItem(request.params.title);
+
+    if (collection !== null) {
+      const deleteTask = await taskDataService.deleteOneTask(request.params.id);
+      
+      await collectionDataService.removeTaskFromCollection(request.params.title, deleteTask._id)
+
       response.redirect(`/${request.params.title}`);
     } else {
       response.redirect(request.url);
@@ -23,22 +22,15 @@ export async function deleteItem(request, response) {
 
 export async function deleteCollection(request, response) {
   try {
-    const data = await TaskCollectionModel.findOne({
-      collectionTitle: request.params.title,
-    });
+    const collectionData = await collectionDataService.findOneCollectionItem(request.params.title);
 
-    if (data !== null) {
-      const allTasks = await TaskCollectionModel.findOne({
-        _id: request.params.id,
-      });
-      await allTasks.data.map(function (id) {
-        const index = allTasks.data.indexOf(id);
-        allTasks.data.splice(index, 1);
-        allTasks.save();
-        TodoModel.findOneAndDelete({ _id: id });
-      });
+    if (collectionData !== null) {
+      await collectionData.data.map(function(id){
+        collectionDataService.removeTaskFromCollection(request.params.title, id)
+        taskDataService.deleteOneTask(id)
+      })
 
-      await TaskCollectionModel.findOneAndDelete({ _id: request.params.id });
+      await collectionDataService.deleteCollection(request.params.id)
       response.redirect("/Tasks");
     } else {
       response.redirect(request.params.url);
